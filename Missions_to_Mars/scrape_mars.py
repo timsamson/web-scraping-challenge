@@ -1,13 +1,15 @@
 # Dependencies
 from splinter import Browser
 from bs4 import BeautifulSoup as Soup
+from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import requests
 import pymongo
+import time
 
 def init_browser():
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
+    return Browser("chrome", **executable_path, headless=False)
 
 def scrape():
     browser = init_browser()
@@ -18,6 +20,7 @@ def scrape():
     browser.visit(news_url)
     html = browser.html
     news_soup = Soup(html, 'html.parser')
+    time.sleep(1)
     news_title = news_soup.find_all('div', class_='content_title')[0].text
     news = news_soup.find_all('div', class_='article_teaser_body')[0].text
 
@@ -40,8 +43,8 @@ def scrape():
 
     #Hemisphere
     base_url = 'https://astrogeology.usgs.gov'
-    url = base_url + '/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-    browser.visit(url)
+    search_url = base_url + '/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(search_url)
     html = browser.html
     soup = Soup(html, 'html.parser')
     items = soup.find_all('div', class_='item')
@@ -54,7 +57,7 @@ def scrape():
         browser.visit(url)
         html = browser.html
         soup = Soup(html, 'html.parser')
-        hem_url = url+soup.find('img',class_='wide-image')['src']
+        hem_url = base_url+soup.find('img',class_='wide-image')['src']
         img_urls.append(hem_url)
         
     hemisphere_image_urls = []
