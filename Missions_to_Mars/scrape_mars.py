@@ -21,7 +21,7 @@ def scrape():
     html = browser.html
     news_soup = Soup(html, 'html.parser')
     time.sleep(1)
-    news_title = news_soup.find_all('div', class_='content_title')[0].text
+    news_title = news_soup.find_all('div', class_='content_title')[1].text
     news = news_soup.find_all('div', class_='article_teaser_body')[0].text
 
     #Feature Image
@@ -38,6 +38,7 @@ def scrape():
     tables = pd.read_html(facts_url)
     mars_facts_df = tables[2]
     mars_facts_df.columns = ["Description", "Value"]
+    mars_facts_df.set_index('Description', inplace=True)
     mars_html_table = mars_facts_df.to_html()
     mars_html_table.replace('\n', '')
 
