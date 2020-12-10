@@ -18,11 +18,11 @@ def scrape():
     # Retrieve the latest news title and paragraph
     news_url = 'https://mars.nasa.gov/news/'
     browser.visit(news_url)
+    time.sleep(5)
     html = browser.html
     news_soup = Soup(html, 'html.parser')
-    time.sleep(1)
     news_title = news_soup.find_all('div', class_='content_title')[1].text
-    news = news_soup.find_all('div', class_='article_teaser_body')[0].text
+    news = news_soup.find('div', class_='article_teaser_body').text
 
     #Feature Image
     base_url = 'https://www.jpl.nasa.gov'
@@ -37,10 +37,10 @@ def scrape():
     facts_url = 'https://space-facts.com/mars/'
     tables = pd.read_html(facts_url)
     mars_facts_df = tables[2]
-    mars_facts_df.columns = ["Description", "Value"]
+    mars_facts_df.columns = ["Description", "Mars"]
     mars_facts_df.set_index('Description', inplace=True)
     mars_html_table = mars_facts_df.to_html()
-    mars_html_table.replace('\n', '')
+    #mars_html_table.replace('\n', '')
 
     #Hemisphere
     base_url = 'https://astrogeology.usgs.gov'
@@ -49,28 +49,21 @@ def scrape():
     html = browser.html
     soup = Soup(html, 'html.parser')
     items = soup.find_all('div', class_='item')
-    img_urls = []
-    titles = []
 
-    for item in items:
-        titles.append(item.find('h3').text.strip())
-        url = (base_url + item.find('a')['href'])
-        browser.visit(url)
-        html = browser.html
-        soup = Soup(html, 'html.parser')
-        hem_url = base_url+soup.find('img',class_='wide-image')['src']
-        img_urls.append(hem_url)
-        
     hemisphere_image_urls = []
 
-    for i in range(len(titles)):
-        hemisphere_image_urls.append({'title':titles[i],'img_url':img_urls[i]})
+    for item in items:
+        titles = item.find('h3').text
+        browser.click_link_by_partial_text(titles)
+        time.sleep(1)
+        html = browser.html
+        soup = Soup(html, 'html.parser')
+        hem_url = base_url + soup.find('img',class_='wide-image')['src']
+        img_urls = hem_url
+        hemisphere_image_urls.append({'title':titles,'img_url':img_urls})
+        browser.back()
 
-    hemisphere_image_urls
-
-    for i in range(len(hemisphere_image_urls)):
-        print(hemisphere_image_urls[i]['title'])
-        print(hemisphere_image_urls[i]['img_url'] + '\n')
+    browser.quit()
 
     #Dictionary
     mars_dict = {
