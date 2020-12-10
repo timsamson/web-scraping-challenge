@@ -15,10 +15,10 @@ Project scrapes various websites to extract data and combines it into a sumamry 
 <br>
 <h3>Loading Notebook and HTML page</h3>
 <p>All files are contained within a folder calles Mission_to_mars in the repo.</p>
-<p>To open the jupyter notebook, please ensure all dependencies below are installed in the environment you wich to run the porject in. Launch Jupyter notebook, nagivate to the apporoporate folder and open notebook.
+<p>To open the jupyter notebook, please ensure all dependencies below are installed in the environment you which to run the porject in. Launch Jupyter notebook, nagivate to the apporoporate folder and open notebook.
 </p>
-<p>To launch the HTML file, naviagte to thh appropoiate folder containing the repo and launch the Index.html (located in the templates folder) in your web browser.</p>
-<p>To initiate the scrape and update webpage, in the webpage you opened above from Index.html, press the scrape mars button, the flask app will run, scapre hte page and return the most current results from the scraped pages. /p><br>
+<p>To launch the HTML file and app, naviagte to thh appropoiate folder within the repo "Missions_to_Mars"</p>
+<p>To initiate the scrape, open terminal, ensure that dependencies are loaded and environement is active. Launhc app.py by running "python app.py" in the terminal. Copy the web address and paste into browser. App will navigate to index page. To scrape new date, press the scrape mars button, the flask app will run, scapre hte page and return the most current results from the scraped pages. /p><br>
 
 <h3>Dependencies</h3>
  <ul>
@@ -26,4 +26,5 @@ Project scrapes various websites to extract data and combines it into a sumamry 
 <li>Jupyter Notebook</li>
 <li>Requests</li>
 <li>Splinter</li>
-<li>BeautifulSoup</li></ul>
+<li>BeautifulSoup</li>
+<li>ChromeDriver</li></ul>
