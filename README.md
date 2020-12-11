@@ -14,12 +14,12 @@ Project scrapes various websites to extract data and combines it into a sumamry 
 </p>
 <br>
 <h3>Loading Notebook and HTML page</h3>
-<ol><li><p>All files are contained within a folder calles Mission_to_mars in the repo.</p></li>
+<ol><li><p>All files are contained within a folder calles Mission_to_Mars in the repo.</p></li>
 <li><p>To open the jupyter notebook, please ensure all dependencies below are installed in the environment you which to run the porject in. Launch Jupyter notebook, nagivate to the appropriate folder and open notebook.
 </p></li>
-<li><p>To launch the HTML file and app, naviagte to thh appropriate folder within the repo "Missions_to_Mars"</p></li>
+<li><p>To launch the HTML file and app, naviagte to thh appropriate folder within the repo "Missions_to_Mars".</p></li>
 
-<li><p>To initiate the scrape:<ul> </li><li>Open terminal</li></li> ensure that dependencies are loaded and environement is active.</li><li>Launch app.py by running "python app.py" in the terminal.</li><li> Copy the web address and paste into browser. </li><li>App will navigate to index page. </li><li>To scrape new data, press the scrape mars button, the flask app will run, scrape the page and return the most current results from the scraped pages. </li></ul></li></ol></p><br>
+<li><p>To initiate the scrape:<ul> </li><li>Open terminal.</li></li> Ensure that dependencies are loaded and environement is active.</li><li>Launch app.py by running "python app.py" in the terminal.</li><li> Copy the web address and paste into browser. </li><li>App will navigate to index page. </li><li>To scrape new data, press the scrape mars button, the flask app will run, scrape the page and return the most current results from the scraped pages. </li></ul></li></ol></p><br>
 
 <h3>Dependencies</h3>
  <ul>
